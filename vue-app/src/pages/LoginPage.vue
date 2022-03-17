@@ -12,3 +12,9 @@ export default {
 	components: { LoginView }
 }
 </script>
+
+<style>
+.container {
+    height: 100%;
+}
+</style>
