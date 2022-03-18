@@ -1,30 +1,28 @@
 <template>
-	<!-- <v-container> -->
-		<!-- <toolbar /> -->
-		<v-app class="page">
-			<v-main class="content">
-				<v-container fluid class="px-4">
-					<router-view></router-view>
-				</v-container>
+	<!-- <toolbar /> -->
+	<v-app class="page">
+		<v-main class="content">
+			<v-container fluid class="px-4">
+				<router-view></router-view>
+			</v-container>
 
-				<v-snackbar v-model="snackbar" :timeout="2000">
-					<v-icon size="20">check_circle</v-icon>
-					{{ alertMessage }}
+			<v-snackbar v-model="snackbar" :timeout="2000">
+				<v-icon size="20">check_circle</v-icon>
+				{{ alertMessage }}
 
-					<template v-slot:action="{ attrs }">
-						<v-btn
-							color="primary"
-							text
-							v-bind="attrs"
-							@click="closeSnackBar"
-						>
-							CLOSE
-						</v-btn>
-					</template>
-				</v-snackbar>
-			</v-main>
-		</v-app>
-	<!-- </v-container> -->
+				<template v-slot:action="{ attrs }">
+					<v-btn
+						color="primary"
+						text
+						v-bind="attrs"
+						@click="closeSnackBar"
+					>
+						CLOSE
+					</v-btn>
+				</template>
+			</v-snackbar>
+		</v-main>
+	</v-app>
 </template>
 
 <script>
@@ -62,7 +60,7 @@ body {
 
 .header {
 	font-weight: 700;
-    font-size: 40px;
+    font-size: 32px;
     color: dimgray;
 }
 
