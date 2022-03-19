@@ -119,12 +119,6 @@ export default {
 		}
 	},
 
-	mounted() {
-		this.lineUid = this.user.userId
-		this.image = this.user.pictureUrl
-		this.displayName = this.user.displayName
-	},
-
 	data() {
 		return {
 		// snack bar
@@ -163,6 +157,10 @@ export default {
 	},
 
 	mounted() {
+		this.lineUid = this.user.userId
+		this.image = this.user.pictureUrl
+		this.displayName = this.user.displayName
+
 		this.$store.dispatch('setAlertMessage', '')
 		this.$store.dispatch('setSnackBar', false)
 	},
