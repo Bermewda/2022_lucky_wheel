@@ -29,7 +29,7 @@
 
 						<v-col cols="12" md="6">
 							<v-text-field
-								v-model="firstname"
+								v-model="firstName"
 								:rules="nameRules"
 								label="First name *"
 								required
@@ -38,7 +38,7 @@
 
 						<v-col cols="12" md="6">
 							<v-text-field
-								v-model="lastname"
+								v-model="lastName"
 								:rules="nameRules"
 								label="Last name *"
 								required
@@ -110,7 +110,7 @@
 
 <script>
 export default {
-	name: "RegisterPage",
+	name: "RegisterView",
 
 	data() {
 		return {
@@ -124,8 +124,8 @@ export default {
 		image: '',
 		lineUid: '',
 		lineDisplayName: '',
-		firstname: '',
-		lastname: '',
+		firstName: '',
+		lastName: '',
 		email: '',
 		phoneNumber: '',
 
@@ -166,7 +166,7 @@ export default {
 
 		const data = {
 			firstName: this.firstName,
-			lastName: this.lastname,
+			lastName: this.lastName,
 			userId: this.lineUid,
 			displayName: this.lineDisplayName,
 			pictureUrl: this.image,
@@ -179,7 +179,7 @@ export default {
 		// success
 		this.$store.dispatch('setAlertMessage', 'Register success')
 		this.$store.dispatch('setSnackBar', true)
-		this.$emit("success");
+		// this.$emit("success");
 		},
 	},
 };

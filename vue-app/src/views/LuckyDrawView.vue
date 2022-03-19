@@ -10,7 +10,7 @@
         ></v-data-table>
 
         <!-- spinner wheel -->
-        <lucky-draw-wheel v-if="users.length < 0" :users="users"/>
+        <lucky-draw-wheel v-if="users.length > 0" :users="users"/>
 	</v-container>
 </template>
 
@@ -33,11 +33,12 @@ export default {
 
     data(){
         return {
+            luckyUserList: [],
             headers: [
-                { text: 'Line display name', value: 'lineDisplayName' },
+                { text: 'Line display name', value: 'displayName' },
                 { text: 'First name', value: 'firstName' },
                 { text: 'Last name', value: 'lastName' },
-                { text: 'Phone number', value: 'phoneNumber' },
+                { text: 'Phone number', value: 'phone' },
             ]
         }
     }

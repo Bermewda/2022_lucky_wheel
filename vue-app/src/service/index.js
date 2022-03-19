@@ -1,19 +1,23 @@
 import axios from 'axios'
 import qs from 'qs'
 
-const options = {
+const defaultOptions = {
     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
+        'Content-Type': 'application/json'
+    },
+    mode: 'no-cors'
 }
 
 const mainUrl = process.env.VUE_APP_ROOT_API
 
 async function get(url) {
-    return await axios.get(url, options)
+    return await axios.get(url)
 }
 
-async function post(url, data) {
+async function post(url, data, options) {
+    if (!options) {
+        options = defaultOptions
+    }
     return await axios.post(url, data, options)
 }
 
@@ -41,9 +45,15 @@ const service = {
     },
 
     async getToken(data) {
+        const options = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            mode: 'no-cors'
+        }
         console.log('data', data)
         const url = 'https://access.line.me/oauth2/v2.1/token'
-        const response = await post(url, qs.stringify(data))
+        const response = await post(url, qs.stringify(data), options)
 
         console.log(response)
     },

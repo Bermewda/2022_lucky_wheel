@@ -73,8 +73,8 @@ export default {
 			return this.users.map((user) => {
 				return {
 					id: 3,
-					name: user.lineDisplayName,
-					value: user.lineDisplayName,
+					name: user.displayName,
+					value: user.displayName,
 					bgColor: randomColor({ luminosity: 'bright' }),
 					color: "#ffffff",
 					probability: 100/totalOfUsers,
