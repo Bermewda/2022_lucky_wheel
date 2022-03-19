@@ -53,6 +53,15 @@
 								required
 							></v-text-field>
 						</v-col>
+
+						<v-col cols="12" md="6">
+							<v-text-field
+								v-model="phoneNumber"
+								:rules="phoneNumberRules"
+								label="phoneNumber *"
+								required
+							></v-text-field>
+						</v-col>
 					</v-row>
 				</v-container>
 			</v-form>
@@ -112,14 +121,20 @@ export default {
 
 		// form
 		valid: false,
-		firstname: "",
-		lastname: "",
+		image: '',
+		lineUid: '',
+		lineDisplayName: '',
+		firstname: '',
+		lastname: '',
+		email: '',
+		phoneNumber: '',
+
 		nameRules: [(v) => !!v || "Name is required"],
-		email: "",
 		emailRules: [
 			(v) => !!v || "E-mail is required",
 			(v) => /.+@.+/.test(v) || "E-mail must be valid",
 		],
+		phoneNumberRules: [],
 
 		// dialog
 		dialog: false,
@@ -140,7 +155,7 @@ export default {
 	},
 
 	methods: {
-		submit() {
+		async submit() {
 		// invalid form
 		if (!this.valid) {
 			this.errorCode = 'Warning'
@@ -148,6 +163,18 @@ export default {
 			this.dialog = true
 			return;
 		}
+
+		const data = {
+			firstName: this.firstName,
+			lastName: this.lastname,
+			userId: this.lineUid,
+			displayName: this.lineDisplayName,
+			pictureUrl: this.image,
+			phone: this.phoneNumber,
+			email: this.email
+		}
+
+		await this.$service.createUser(data)
 
 		// success
 		this.$store.dispatch('setAlertMessage', 'Register success')

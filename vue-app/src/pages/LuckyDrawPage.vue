@@ -18,13 +18,7 @@ export default {
     },
 
     async mounted() {
-        this.users = await this.getUsersFromServer()
-    },
-
-    methods: {
-        async getUsersFromServer() {
-            return []
-        }
+        this.users = await this.$service.getUsersFromServer() || []
     }
 }
 </script>

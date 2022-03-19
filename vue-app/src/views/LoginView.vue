@@ -13,11 +13,7 @@ export default {
 
     methods: {
         goToLoginLine () {
-            return {
-                lineUid: 1,
-                lineDisplayName: 'mew',
-                img: 'image'
-            }
+            this.$emit('login')
         }
     }
 };
