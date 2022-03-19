@@ -14,7 +14,7 @@ async function get(url, options) {
     if (!options) {
         options = defaultOptions
     }
-    return await axios.get(url)
+    return await axios.get(url, options)
 }
 
 async function post(url, data, options) {
