@@ -145,7 +145,7 @@ export default {
 
 	computed: {
 		imageSrc() {
-		return "@/assets/cat.jpg";
+			return "@/assets/cat.jpg";
 		},
 	},
 

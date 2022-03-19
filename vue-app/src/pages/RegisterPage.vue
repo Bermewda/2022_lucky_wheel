@@ -19,7 +19,7 @@ export default {
         }
     },
 
-    mounted() {
+    async mounted () {
         if (this.$route.query && this.$route.query.code) {
             const accessToken = await this.getAccessToken(this.$route.query.code)
             this.userProfile = await this.getProfile(accessToken)
@@ -41,7 +41,7 @@ export default {
                 client_secret
             }
 
-            resp = await this.$service.getToken(data)
+            const resp = await this.$service.getToken(data)
 
             return resp.access_token
         },
@@ -51,6 +51,7 @@ export default {
                 Authorization: `Bearer ${accessToken}`
             }
             const userProfile = await this.$service.getProfile(data)
+            console.log('user', userProfile)
             return userProfile
         },
 

@@ -21,16 +21,6 @@ async function post(url, data, options) {
     return await axios.post(url, data, options)
 }
 
-function generateKey(length) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-}
-
 const service = {
     async getToken(data) {
         const options = {
@@ -46,6 +36,7 @@ const service = {
     },
 
     async getProfile(data) {
+        const url = 'https://api.line.me/v2/profile'
         const response = await post(url, data)
 
         return response.data
