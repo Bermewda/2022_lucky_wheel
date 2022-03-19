@@ -47,10 +47,7 @@ export default {
         },
 
         async getProfile (accessToken) {
-            const data = {
-                Authorization: `Bearer ${accessToken}`
-            }
-            const userProfile = await this.$service.getProfile(data)
+            const userProfile = await this.$service.getProfile(accessToken)
             console.log('user', userProfile)
             return userProfile
         },

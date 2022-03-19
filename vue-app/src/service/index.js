@@ -10,7 +10,10 @@ const defaultOptions = {
 
 const mainUrl = process.env.VUE_APP_ROOT_API
 
-async function get(url) {
+async function get(url, options) {
+    if (!options) {
+        options = defaultOptions
+    }
     return await axios.get(url)
 }
 
@@ -35,9 +38,15 @@ const service = {
         return response.data
     },
 
-    async getProfile(data) {
+    async getProfile(accessToken) {
+        const options = {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            mode: 'no-cors'
+        }
         const url = 'https://api.line.me/v2/profile'
-        const response = await post(url, data)
+        const response = await get(url, options)
 
         return response.data
     },
