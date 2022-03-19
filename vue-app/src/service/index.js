@@ -32,18 +32,6 @@ function generateKey(length) {
 }
 
 const service = {
-    async getAuthenticateCode() {
-        const responseType = 'code'
-        const clientId = process.env.VUE_APP_CLIENT_ID
-        const redirectUri = process.env.VUE_APP_REDIRECT_URL
-        const state = generateKey(10)
-        const scope = 'profile%20openid%20email'
-        const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${scope}`
-        const response = await get(url)
-
-        console.log(response)
-    },
-
     async getToken(data) {
         const options = {
             headers: {
@@ -51,11 +39,16 @@ const service = {
             },
             mode: 'no-cors'
         }
-        console.log('data', data)
         const url = 'https://api.line.me/oauth2/v2.1/token'
         const response = await post(url, qs.stringify(data), options)
 
-        console.log(response)
+        return response.data
+    },
+
+    async getProfile(data) {
+        const response = await post(url, data)
+
+        return response.data
     },
 
     async getUsersFromServer () {

@@ -15,20 +15,20 @@ export default {
 
     data() {
         return {
-            isSuccess: false
+            userProfile: null
         }
     },
 
     mounted() {
-        console.log('code', this.$route.query.code)
         if (this.$route.query && this.$route.query.code) {
-            this.getToken(this.$route.query.code)
+            const accessToken = await this.getAccessToken(this.$route.query.code)
+            this.userProfile = await this.getProfile(accessToken)
         }
     },
 
 
     methods: {
-        async getToken (code) {
+        async getAccessToken (code) {
             const grant_type = 'authorization_code'
             const client_id = process.env.VUE_APP_CLIENT_ID
             const redirect_uri = process.env.VUE_APP_REDIRECT_URL
@@ -41,10 +41,20 @@ export default {
                 client_secret
             }
 
-            await this.$service.getToken(data)
+            resp = await this.$service.getToken(data)
+
+            return resp.access_token
         },
 
-        showSuccessPage() {
+        async getProfile (accessToken) {
+            const data = {
+                Authorization: `Bearer ${accessToken}`
+            }
+            const userProfile = await this.$service.getProfile(data)
+            return userProfile
+        },
+
+        showSuccessPage () {
             this.$router.push({ path: '/'})
         }
     }
