@@ -1,6 +1,6 @@
 <template>
     <v-container class="register-page">
-        <register-view @success="showSuccessPage"/>
+        <register-view :user="userProfile" @success="showSuccessPage"/>
     </v-container>
 </template>
 
@@ -48,7 +48,6 @@ export default {
 
         async getProfile (accessToken) {
             const userProfile = await this.$service.getProfile(accessToken)
-            console.log('user', userProfile)
             return userProfile
         },
 

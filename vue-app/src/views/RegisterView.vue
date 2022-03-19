@@ -21,7 +21,7 @@
 
 						<v-col cols="12" md="6">
 							<v-text-field
-								v-model="lineDisplayName"
+								v-model="displayName"
 								label="Line display name"
 								disabled
 							></v-text-field>
@@ -112,6 +112,19 @@
 export default {
 	name: "RegisterView",
 
+	props: {
+		user: {
+			type: Object,
+			default: (() => {})
+		}
+	},
+
+	mounted() {
+		this.lineUid = this.user.userId
+		this.image = this.user.pictureUrl
+		this.displayName = this.user.displayName
+	},
+
 	data() {
 		return {
 		// snack bar
@@ -123,7 +136,7 @@ export default {
 		valid: false,
 		image: '',
 		lineUid: '',
-		lineDisplayName: '',
+		displayName: '',
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -168,7 +181,7 @@ export default {
 			firstName: this.firstName,
 			lastName: this.lastName,
 			userId: this.lineUid,
-			displayName: this.lineDisplayName,
+			displayName: this.displayName,
 			pictureUrl: this.image,
 			phone: this.phoneNumber,
 			email: this.email
@@ -179,7 +192,7 @@ export default {
 		// success
 		this.$store.dispatch('setAlertMessage', 'Register success')
 		this.$store.dispatch('setSnackBar', true)
-		// this.$emit("success");
+		this.$emit("success");
 		},
 	},
 };
