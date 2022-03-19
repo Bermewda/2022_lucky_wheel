@@ -52,7 +52,7 @@ const service = {
             mode: 'no-cors'
         }
         console.log('data', data)
-        const url = 'https://access.line.me/oauth2/v2.1/token'
+        const url = 'https://api.line.me/oauth2/v2.1/token'
         const response = await post(url, qs.stringify(data), options)
 
         console.log(response)
