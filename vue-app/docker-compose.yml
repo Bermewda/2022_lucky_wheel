@@ -3,6 +3,7 @@ services:
   frontend:
     build: .
     container_name: 'frontend'
+    platform: linux/amd64
     env_file:
       - ./.env
     ports:
