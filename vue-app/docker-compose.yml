@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  frontend:
+    build: .
+    container_name: 'frontend'
+    env_file:
+      - ./.env
+    ports:
+      - 8080:8080
+    networks:
+      - main
+
+networks:
+  main:
+    external:
+      name: main-network
